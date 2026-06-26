@@ -315,7 +315,6 @@ export default function App() {
   }
 
   const pageNarratives =
-    activePage.id === 'resident' ? RESIDENT_NARRATIVES :
     activePage.id === 'propertyManager' ? PROPERTY_MANAGER_NARRATIVES :
     activePage.id === 'hoa' ? HOA_NARRATIVES : []
   const currentNarrativeId = state.activeNarratives[state.activePage] ?? ''
@@ -432,9 +431,8 @@ export default function App() {
               </div>
             )}
 
-            {/* Variant selectors for the active page — hidden while a Narrative is active or on resident page */}
-            {activeNarrative || activePage.id === 'resident' ? (
-              activeNarrative ? (
+            {/* Variant selectors for the active page — hidden while a Narrative is active */}
+            {activeNarrative ? (
               <div>
                 <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
                   {activePage.label} — Sections
@@ -443,42 +441,41 @@ export default function App() {
                   Showing the "{activeNarrative.label}" narrative. Switch to "Section Variants" above to edit individual sections.
                 </p>
               </div>
-              ) : null
             ) : (
-            <div>
-              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                {activePage.label} — Sections
-              </h3>
-              <div className="space-y-5">
-                {activePage.sections.map((section) => {
-                  const selectedIndex = pageSelections[section.id] ?? 0
-                  return (
-                    <div key={section.id}>
-                      <div className="text-xs font-semibold text-gray-500 mb-1.5">{section.label}</div>
-                      <div className="flex flex-wrap gap-1 mb-1">
-                        {section.variants.map((v, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setVariant(section.id, i)}
-                            title={v.label}
-                            className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                              selectedIndex === i
-                                ? 'bg-gray-900 text-white'
-                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                            }`}
-                          >
-                            {i + 1}
-                          </button>
-                        ))}
+              <div>
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
+                  {activePage.label} — Sections
+                </h3>
+                <div className="space-y-5">
+                  {activePage.sections.map((section) => {
+                    const selectedIndex = pageSelections[section.id] ?? 0
+                    return (
+                      <div key={section.id}>
+                        <div className="text-xs font-semibold text-gray-500 mb-1.5">{section.label}</div>
+                        <div className="flex flex-wrap gap-1 mb-1">
+                          {section.variants.map((v, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setVariant(section.id, i)}
+                              title={v.label}
+                              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                                selectedIndex === i
+                                  ? 'bg-gray-900 text-white'
+                                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              }`}
+                            >
+                              {i + 1}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="text-xs text-gray-400 italic">
+                          {section.variants[selectedIndex]?.label}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-400 italic">
-                        {section.variants[selectedIndex]?.label}
-                      </div>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </div>
               </div>
-            </div>
             )}
 
           </div>
