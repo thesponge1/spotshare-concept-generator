@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PAGES, PRESETS, DEFAULT_SELECTIONS, HOME_NARRATIVES, RESIDENT_NARRATIVES, PROPERTY_MANAGER_NARRATIVES, HOA_NARRATIVES } from './data'
+import { PAGES, DEFAULT_SELECTIONS, RESIDENT_NARRATIVES, PROPERTY_MANAGER_NARRATIVES, HOA_NARRATIVES } from './data'
 import type { Variant, Page } from './data'
 import './styles.css'
 
@@ -10,12 +10,11 @@ import './styles.css'
 interface AppState {
   activePage: string
   selections: Record<string, Record<string, number>>
-  activePreset: string
   // Active narrative per page. '' or missing = fall back to section-variant system.
   activeNarratives: Record<string, string>
 }
 
-const STORAGE_KEY = 'spotshare-v3'
+const STORAGE_KEY = 'spotshare-v4'
 
 function loadState(): AppState {
   try {
@@ -23,9 +22,8 @@ function loadState(): AppState {
     if (saved) return JSON.parse(saved) as AppState
   } catch {}
   return {
-    activePage: 'home',
+    activePage: 'resident',
     selections: structuredClone(DEFAULT_SELECTIONS),
-    activePreset: 'balanced',
     activeNarratives: {},
   }
 }
@@ -277,23 +275,10 @@ export default function App() {
   function setVariant(sectionId: string, index: number) {
     setState((s) => ({
       ...s,
-      activePreset: '',
       selections: {
         ...s.selections,
         [s.activePage]: { ...s.selections[s.activePage], [sectionId]: index },
       },
-    }))
-  }
-
-  // Apply a preset across all pages
-  function applyPreset(presetId: string) {
-    const preset = PRESETS.find((p) => p.id === presetId)
-    if (!preset) return
-    setState((s) => ({
-      ...s,
-      activePreset: presetId,
-      activeNarratives: { ...s.activeNarratives, [s.activePage]: '' },
-      selections: { ...s.selections, ...structuredClone(preset.selections) },
     }))
   }
 
@@ -307,7 +292,6 @@ export default function App() {
     }
     setState((s) => ({
       ...s,
-      activePreset: '',
       activeNarratives: { ...s.activeNarratives, [s.activePage]: '' },
       selections: newSelections,
     }))
@@ -316,9 +300,8 @@ export default function App() {
   // Reset everything back to defaults
   function reset() {
     setState({
-      activePage: 'home',
+      activePage: 'resident',
       selections: structuredClone(DEFAULT_SELECTIONS),
-      activePreset: 'balanced',
       activeNarratives: {},
     })
   }
@@ -331,15 +314,13 @@ export default function App() {
     }))
   }
 
-  const activePresetLabel = PRESETS.find((p) => p.id === state.activePreset)?.label
   const pageNarratives =
-    activePage.id === 'home' ? HOME_NARRATIVES :
     activePage.id === 'resident' ? RESIDENT_NARRATIVES :
     activePage.id === 'propertyManager' ? PROPERTY_MANAGER_NARRATIVES :
     activePage.id === 'hoa' ? HOA_NARRATIVES : []
   const currentNarrativeId = state.activeNarratives[state.activePage] ?? ''
   const activeNarrative = pageNarratives.find((n) => n.id === currentNarrativeId)
-  const headerBadgeLabel = activeNarrative ? `${activeNarrative.label} (Narrative)` : activePresetLabel
+  const headerBadgeLabel = activeNarrative ? `${activeNarrative.label} (Narrative)` : undefined
 
   return (
     <div className="h-screen flex flex-col bg-gray-100 overflow-hidden">
@@ -413,30 +394,7 @@ export default function App() {
         >
           <div className="w-72 h-full overflow-y-auto p-4 space-y-6">
 
-            {/* Presets */}
-            <div>
-              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                Presets
-              </h3>
-              <div className="space-y-2">
-                {PRESETS.map((preset) => (
-                  <button
-                    key={preset.id}
-                    onClick={() => applyPreset(preset.id)}
-                    className={`w-full text-left p-3 rounded-xl border text-sm transition-all ${
-                      state.activePreset === preset.id
-                        ? 'border-blue-400 bg-blue-50 text-blue-900'
-                        : 'border-gray-100 hover:border-gray-300 text-gray-700'
-                    }`}
-                  >
-                    <div className="font-semibold text-sm">{preset.label}</div>
-                    <div className="text-xs text-gray-500 mt-0.5 leading-snug">{preset.description}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Narrative Strategies — Home and Resident pages. See NARRATIVES.md. */}
+            {/* Narrative Strategies — Resident, Property Manager, and HOA pages. See NARRATIVES.md. */}
             {pageNarratives.length > 0 && (
               <div>
                 <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
@@ -553,7 +511,6 @@ export default function App() {
             <nav className="flex items-center justify-between px-8 py-4 border-b border-gray-100 bg-white">
               <span className="font-bold text-xl text-blue-600">SpotShare</span>
               <div className="hidden md:flex items-center gap-6 text-sm text-gray-500">
-                <span>Home</span>
                 <span>Residents</span>
                 <span>Property Managers</span>
                 <span>HOA Boards</span>
