@@ -193,67 +193,11 @@ export const PAGES: Page[] = [
         ],
       },
       {
-        id: 'availability',
-        label: 'Availability',
-        variants: [
-          {
-            label: 'Property Managed',
-            eyebrow: 'Will I actually get a spot?',
-            title: 'Your community\'s parking is managed by your property team — so what you see is what\'s actually there.',
-            body: 'No double bookings, no surprises. Your property manager configures which community spots are eligible and sets the rules. SpotShare enforces them automatically, so every available spot is genuinely available.',
-            cta: 'See How It Works',
-            layoutType: 'list',
-          },
-          {
-            label: 'Reassurance',
-            eyebrow: 'How SpotShare handles availability',
-            title: 'Real spots. Real availability. No one in your community gets left circling.',
-            body: 'SpotShare only shows spots that are actually open. Community spots are only available when residents have explicitly shared them. You\'ll never show up to find someone else already there.',
-            bullets: [
-              'Claim a spot in advance or on arrival',
-              'Confirmed spots are locked to you for your window',
-              'The system enforces it — no manual policing needed',
-            ],
-            cta: 'Bring SpotShare to My Building',
-            layoutType: 'centered',
-          },
-          {
-            label: 'Building Control',
-            eyebrow: 'Your community sets the rules',
-            title: 'Every community configures SpotShare around how they actually live and park.',
-            body: 'Your property manager decides which spots are eligible, how long guests can stay, and how far in advance they can book. SpotShare enforces those community rules automatically — you just see what\'s available.',
-            cta: 'Ask Your Property Manager',
-            layoutType: 'highlight',
-          },
-        ],
-      },
-      {
         id: 'itsFree',
         label: 'It\'s Free',
         variants: [
           {
-            label: 'Free Amenity',
-            eyebrow: 'One more thing',
-            title: 'SpotShare is a community amenity — already included with your home. No fees, no catch.',
-            body: 'Access SpotShare from any browser. Your building handles the setup. You just show up and benefit from a community that takes care of its own.',
-            bullets: [
-              'Free — covered by your building, like any other community amenity',
-              'Works from any browser on any device',
-              'Mobile app coming soon',
-            ],
-            cta: 'Ask My Property Manager to Set This Up',
-            layoutType: 'dark',
-          },
-          {
-            label: 'No Friction',
-            eyebrow: 'Nothing to download or sign up for',
-            title: 'No app. No account. No friction. Just a community that makes parking easy.',
-            body: 'SpotShare works from any browser on any device. Your guest gets a link, sees what\'s available in your community, and claims a spot. That\'s the whole experience. Nothing to install, nothing to remember — because access should always feel this simple.',
-            cta: 'Bring SpotShare to My Building',
-            layoutType: 'centered',
-          },
-          {
-            label: 'Value',
+            label: 'Amenity Parallel',
             eyebrow: 'What\'s included',
             title: 'The community amenity your building was waiting for.',
             body: 'SpotShare is included as a building amenity — same as the gym, the package room, or the bike storage. You pay nothing extra. You just benefit from a community system that turns parking into something everyone can rely on.',
@@ -266,41 +210,54 @@ export const PAGES: Page[] = [
             cta: 'Ask Your Property Manager to Add SpotShare',
             layoutType: 'highlight',
           },
+          {
+            label: 'Effortless',
+            eyebrow: 'What\'s included',
+            title: 'The community amenity your building was waiting for.',
+            body: 'Nothing to download, nothing to pay, and nothing to manage. SpotShare is set up by your property team and available to every resident automatically. When your guest needs a spot, you share a link. That\'s the whole experience.',
+            bullets: [
+              'No app, no account, no setup — for residents',
+              'Share a link; your guest handles the rest',
+              'Your property team configures everything once',
+              'Mobile app coming soon',
+            ],
+            cta: 'Ask Your Property Manager to Add SpotShare',
+            layoutType: 'highlight',
+          },
+          {
+            label: 'Taken Care Of',
+            eyebrow: 'What\'s included',
+            title: 'The community amenity your building was waiting for.',
+            body: 'Your building already handled it. SpotShare is configured, covered, and ready — the same way the lobby is clean when you walk in and the package room works when a delivery arrives. You just show up and use it.',
+            bullets: [
+              'Available to every resident, no signup needed',
+              'Works from any browser, any device',
+              'Completely free — covered by your building',
+              'Mobile app coming soon',
+            ],
+            cta: 'Ask Your Property Manager to Add SpotShare',
+            layoutType: 'highlight',
+          },
+          {
+            label: 'Community-First',
+            eyebrow: 'What\'s included',
+            title: 'The community amenity your building was waiting for.',
+            body: 'Most buildings have a gym nobody uses and a parking problem everybody complains about. SpotShare is the rare amenity that actually solves something — and your neighbors are the ones who make it work. No fees, no friction. Just a community that looks out for its own.',
+            bullets: [
+              'Residents share spots — neighbors find parking',
+              'No fees for residents, ever',
+              'Works from any browser, any device',
+              'Mobile app coming soon',
+            ],
+            cta: 'Ask Your Property Manager to Add SpotShare',
+            layoutType: 'highlight',
+          },
         ],
       },
       {
         id: 'cta',
         label: 'CTA',
         variants: [
-          {
-            label: 'Advocacy',
-            eyebrow: 'Ready to make it happen?',
-            title: 'Help your community get this. It starts with one ask.',
-            body: 'SpotShare is easy for your building to set up and free for every resident. Share this page with your property manager or HOA board — and be the neighbor who made parking better for everyone.',
-            bullets: [
-              'Forward this page to your property manager',
-              'Share with your HOA board contact',
-              'Or let us reach out on your behalf',
-            ],
-            cta: 'Tell My Building About SpotShare',
-            layoutType: 'highlight',
-          },
-          {
-            label: 'Direct',
-            eyebrow: 'Make it happen',
-            title: 'Your community can have this. You just have to be the one who asks.',
-            body: 'Share this page with your property manager or HOA board. We handle everything from there — setup, onboarding, resident communication. One resident who speaks up is all it takes to get it on the agenda.',
-            cta: 'Share With My Building',
-            layoutType: 'dark',
-          },
-          {
-            label: 'Soft Ask',
-            eyebrow: 'No pressure',
-            title: 'Find out if SpotShare is right for your community.',
-            body: 'Every building is different. Send us your info and we\'ll tell you honestly whether SpotShare is a good fit — and if it is, we\'ll handle reaching out to your property manager directly. No pressure, just a real conversation.',
-            cta: 'Check If My Building Qualifies',
-            layoutType: 'centered',
-          },
           {
             label: 'Community Statement',
             eyebrow: 'Built for communities like yours',
@@ -883,7 +840,7 @@ export const PAGES: Page[] = [
 // ================================================================
 
 export const DEFAULT_SELECTIONS: Record<string, Record<string, number>> = {
-  resident: { hero: 0, whatIsSpotShare: 0, howItWorks: 0, availability: 0, itsFree: 0, cta: 0 },
+  resident: { hero: 0, whatIsSpotShare: 0, howItWorks: 0, itsFree: 0, cta: 0 },
   propertyManager: { hero: 0, painPoints: 0, operationalBenefits: 0, implementation: 0, towing: 0, pricing: 0, proof: 0, cta: 0 },
   hoa: { hero: 0, boardConcerns: 0, valueProposition: 0, riskReduction: 0, approvalProcess: 0, cta: 0 },
 }
