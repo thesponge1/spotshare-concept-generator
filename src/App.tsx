@@ -98,11 +98,12 @@ function SectionBlock({
       </ul>
     ) : null
 
-  const CtaButton = ({ className = '' }: { className?: string }) => (
-    <button className={`${page.bgClass} text-white font-semibold px-8 py-3 rounded-full transition-all ${className}`}>
-      {variant.cta}
-    </button>
-  )
+  const CtaButton = ({ className = '' }: { className?: string }) =>
+    variant.cta ? (
+      <button className={`${page.bgClass} text-white font-semibold px-8 py-3 rounded-full transition-all ${className}`}>
+        {variant.cta}
+      </button>
+    ) : null
 
   // ---- STEPS layout ----
   if (variant.layoutType === 'steps') {
@@ -181,9 +182,11 @@ function SectionBlock({
               ))}
             </ul>
           )}
-          <button className="bg-white text-gray-900 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-all">
-            {variant.cta}
-          </button>
+          {variant.cta && (
+            <button className="bg-white text-gray-900 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-all">
+              {variant.cta}
+            </button>
+          )}
         </div>
       </section>
     )

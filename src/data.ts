@@ -30,7 +30,7 @@ export type Variant = {
   title: string       // Main headline
   body: string        // Supporting paragraph
   bullets?: string[]  // Optional bullet list or feature points
-  cta: string         // Button text
+  cta?: string        // Button text (omit to hide the button)
   layoutType: LayoutType
 }
 
@@ -288,34 +288,36 @@ export const PAGES: Page[] = [
         label: 'Hero',
         variants: [
           {
-            label: 'Easiest Amenity',
-            eyebrow: 'For Property Managers',
-            title: 'The easiest way to give your community something they\'ll actually love.',
-            body: 'Send us a spreadsheet. Hang a poster. Your community has a parking system that takes care of itself — and of each other.',
-            cta: 'Book a 20-Minute Call',
-            layoutType: 'centered',
-          },
-          {
-            label: 'Problem-First',
-            eyebrow: 'For Property Managers',
-            title: 'Your community has been asking for this. Now you can give it to them.',
-            body: 'SpotShare gives your residents a real guest parking system — not another workaround. Configurable, automated, and built on the idea that neighbors take care of each other.',
-            cta: 'Schedule a Management Demo',
-            layoutType: 'centered',
-          },
-          {
-            label: 'Operational',
+            label: 'Original',
             eyebrow: 'For Property Managers',
             title: 'Turn your parking lot into your community\'s most-loved amenity.',
             body: 'SpotShare gives property managers a structured, self-running guest parking program — and gives your community a shared resource that actually brings neighbors together.',
-            bullets: [
-              'No infrastructure changes — ever',
-              'Manager dashboard for full community visibility',
-              'Usage reports',
-              'Residents manage their own spots',
-            ],
             cta: 'Request a Demo',
-            layoutType: 'split',
+            layoutType: 'centered',
+          },
+          {
+            label: 'Amenity Ask',
+            eyebrow: 'For Property Managers',
+            title: 'Turn your parking lot into your community\'s most-loved amenity.',
+            body: 'The amenity your residents keep asking for — and the one that actually solves something.',
+            cta: 'Request a Demo',
+            layoutType: 'centered',
+          },
+          {
+            label: 'No Management',
+            eyebrow: 'For Property Managers',
+            title: 'Turn your parking lot into your community\'s most-loved amenity.',
+            body: 'No infrastructure changes. No ongoing management. Just a parking amenity your residents will actually thank you for.',
+            cta: 'Request a Demo',
+            layoutType: 'centered',
+          },
+          {
+            label: 'Set and Forget',
+            eyebrow: 'For Property Managers',
+            title: 'Turn your parking lot into your community\'s most-loved amenity.',
+            body: 'Set it up once. SpotShare handles the rest — and your residents notice.',
+            cta: 'Request a Demo',
+            layoutType: 'centered',
           },
         ],
       },
